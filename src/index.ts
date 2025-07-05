@@ -6,12 +6,16 @@ const addTaskButton = document.getElementById(
 ) as HTMLButtonElement;
 const taskList = document.getElementById("task-list");
 let taskText = document.getElementById("input-text") as HTMLInputElement;
+let newElement = document.createElement("p");
+// HTMLのbody要素に追加するか、専用のコンテナを作成
 
 function addTaskList(): void {
-  console.log(`タスク：`, taskText.value);
+  const newElement = document.createElement("p");
+  newElement.textContent = taskText.value;
+  document.body.appendChild(newElement);
 }
 
-document.addEventListener("click", addTaskList);
+addTaskButton.addEventListener("click", addTaskList);
 //
 // document
 //   .getElementById("add-task-button")
