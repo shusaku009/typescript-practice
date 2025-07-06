@@ -2,7 +2,9 @@
 // 見つからない場合は早期リターン
 // 変数が存在している場合は、DOMを追加する
 type Task = {
+  id: number;
   title: string;
+  completed: boolean;
 };
 const addTaskButton = document.getElementById(
   "add-task-button",
@@ -16,8 +18,8 @@ let task: Task[] = [];
 function addTaskList(): void {
   const newElement = document.createElement("p");
   newElement.textContent = taskText.value;
-  task.push(taskText);
-  console.log(task[1]);
+  task.push({ id: task.length + 1, title: taskText.value, completed: false });
+  console.log(task);
   document.body.appendChild(newElement);
 }
 
