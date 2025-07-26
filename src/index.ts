@@ -6,7 +6,7 @@ type Task = {
 const addTaskButton = document.getElementById(
   "add-task-button",
 ) as HTMLButtonElement;
-const taskList = document.getElementById("task-list");
+const taskList = document.querySelector(".taskList") as HTMLHtmlElement;
 let taskText = document.getElementById("input-text") as HTMLInputElement;
 let newElement = document.createElement("p");
 let task: Task[] = [];
