@@ -8,15 +8,11 @@ const addTaskButton = document.getElementById(
 ) as HTMLButtonElement;
 const taskList = document.querySelector(".taskList") as HTMLHtmlElement;
 let taskText = document.getElementById("input-text") as HTMLInputElement;
-let newElement = document.createElement("p");
 let task: Task[] = [];
 
-function addTaskList(): void {
-  const newElement = document.createElement("p");
-  newElement.textContent = taskText.value;
+function addTask(): void {
   task.push({ id: task.length + 1, title: taskText.value, completed: false });
-  console.log(task);
-  document.body.appendChild(newElement);
+  taskList.insertAdjacentHTML("afterend", `<p>${taskText.value}</p>`);
 }
 
 addTaskButton.addEventListener("click", addTaskList);
