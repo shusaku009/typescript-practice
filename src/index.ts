@@ -22,6 +22,7 @@ function addTask(): void {
   taskList.insertAdjacentHTML(
     "afterend",
     `<div class="flex"><p>${taskText.value}</p><input id="complete" type="checkbox" name="" value=""></div>`,
+    `<div class="flex"><p>${taskText.value}</p><input data-task-id=${newTask.id} id="complete" type="checkbox" name="" value=""></div>`,
   );
 }
 
@@ -35,8 +36,9 @@ function completTask(): void {
 document.body.addEventListener("click", (event) => {
   const target = event.target as HTMLInputElement;
   if (target.type === "checkbox") {
-    const checkbox = target as HTMLInputElement;
-    console.log("チェックボックス", checkbox.checked);
+    const taskId = parseInt(target.dataset.taskId!);
+    console.log("タスク", task);
+    console.log("タスクID:", taskId);
   }
 });
 
