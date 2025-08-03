@@ -13,7 +13,12 @@ let task: Task[] = [];
 const newElement = document.getElementById("complete") as HTMLInputElement;
 
 function addTask(): void {
-  task.push({ id: task.length + 1, title: taskText.value, completed: false });
+  const newTask = {
+    id: task.length + 1,
+    title: taskText.value,
+    completed: false,
+  };
+  task.push(newTask);
   taskList.insertAdjacentHTML(
     "afterend",
     `<div class="flex"><p>${taskText.value}</p><input id="complete" type="checkbox" name="" value=""></div>`,
