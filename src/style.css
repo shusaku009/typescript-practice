@@ -1,0 +1,11 @@
+body {
+  padding: 10% 15%;
+
+  .flex {
+    display: flex;
+  }
+
+  .display-none {
+    display: none;
+  }
+}
