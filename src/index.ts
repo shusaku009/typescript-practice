@@ -25,8 +25,12 @@ function addTask(): void {
   );
 }
 
+function findTaskTarget(taskId: number): Task | undefined {
+  return newtask.find((task) => task.id === taskId);
+}
+
 function completTask(taskId: number): void {
-  const taskTarget = newtask.find((task) => task.id === taskId);
+  const taskTarget = findTaskTarget(taskId);
   if (taskTarget) {
     taskTarget.completed = true;
   }
@@ -35,7 +39,7 @@ function completTask(taskId: number): void {
 document.body.addEventListener("click", (event) => {
   const target = event.target as HTMLInputElement;
   const taskId = parseInt(target.dataset.taskId!);
-  const taskTarget = newtask.find((task) => task.id === taskId);
+  const taskTarget = findTaskTarget(taskId);
 
   if (target.type === "checkbox") {
     if (taskTarget) {
