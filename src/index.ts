@@ -9,36 +9,45 @@ const addTaskButton = document.getElementById(
 ) as HTMLButtonElement;
 const taskList = document.getElementById("addTask") as HTMLHtmlElement;
 let taskText = document.getElementById("input-text") as HTMLInputElement;
-let task: Task[] = [];
-const newElement = document.getElementById("complete") as HTMLInputElement;
+let newtask: Task[] = [];
 
 function addTask(): void {
-  const newTask = {
-    id: task.length + 1,
+  const task = {
+    id: newtask.length + 1,
     title: taskText.value,
     completed: false,
   };
-  task.push(newTask);
+
+  newtask.push(task);
   taskList.insertAdjacentHTML(
     "afterend",
-    `<div class="flex"><p>${taskText.value}</p><input id="complete" type="checkbox" name="" value=""></div>`,
-    `<div class="flex"><p>${taskText.value}</p><input data-task-id=${newTask.id} id="complete" type="checkbox" name="" value=""></div>`,
+    `<div class="flex"><p>${taskText.value}</p><input data-task-id=${task.id}  type="checkbox" name="" value=""></div>`,
   );
 }
 
-function completTask(): void {
-  newElement.addEventListener("click", () => {
-    completTask();
-    console.log("チェックボックス", newElement.checked);
-  });
+function completTask(taskId: number): void {
+  const taskTarget = newtask.find((task) => task.id === taskId);
+  if (taskTarget) {
+    taskTarget.completed = true;
+  }
 }
 
 document.body.addEventListener("click", (event) => {
   const target = event.target as HTMLInputElement;
+  const taskId = parseInt(target.dataset.taskId!);
+  const taskTarget = newtask.find((task) => task.id === taskId);
+
   if (target.type === "checkbox") {
-    const taskId = parseInt(target.dataset.taskId!);
-    console.log("タスク", task);
-    console.log("タスクID:", taskId);
+    if (taskTarget) {
+      taskTarget.completed = !taskTarget.completed;
+      const taskBody = document.querySelector(".flex") as HTMLElement;
+
+      if (taskTarget.completed) {
+        taskBody.classList.add("display-none");
+      } else {
+        taskBody.classList.remove("display-none");
+      }
+    }
   }
 });
 
